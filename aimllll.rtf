@@ -1,0 +1,415 @@
+{\rtf1\fbidis\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset1 Segoe UI Emoji;}{\f3\fnil\fcharset1 Segoe UI Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\b\f0\fs28\lang9 DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING (CSE)\par
+SREE SAKTHI ENGINEERING COLLEGE(SSEC)\par
+FAKE NEWS DETECTION\par
+
+\pard\sa200\sl276\slmult1 ABSTRACT:\b0\par
+With the recent social media boom, the spread of fake news has become a great concern for everybody. It has been used to manipulate public opinions, influence the election - most notably the US Presidential Election of 2016, incite hatred and riots like the genocide of the Rohingya population. A 2018 MIT study found that fake news spreads six times faster on Twitter than real news. The credibility and trust in the news media are at an all-time low. It is becoming increasingly difficult to determine which news is real and which is fake. Various machine learning methods have been used to separate real news from fake ones. In this study, wetried to accomplish that using Passive Aggressive Classifier, LSTM and natural language processing. There are lots of machine learning models but these two have shown better progress.\par
+Now there is some confusion present in the authenticity of the correctness. But it definitely opens the window for further research. There are some of the aspects that has to be kept in mind considering the fact that fake news detection is not only a simple web interface but also a quite complex thing that includes a lot of backend work\par
+\b 1.Introduction:\b0\par
+Fake news is untrue information presented as news. It often has the aim of damaging the reputation of a person or entity or making money through advertising revenue. Once common in print, the prevalence of fake news has increased with the rise of social media, especially the Facebook News Feed. During the 2016 US presidential election, various kinds of fake news about the candidates widely spread in the online social networks, which may have a significant effect on the election results. According to a post-election statistical report, online social networks account for more than 41.8% of the fake news data traffic in the election,which is much greater than the data traffic shares of both traditional TV/radio/print medium and online search engines respectively. Fake news detection is becoming increasingly difficult because people who have ill intentions are writing the fake pieces so convincingly that it is difficult to separate from real news. What we have done is a simplistic approach that looks at the news headlines and tries to predict whether they may be fake or not.\par
+Fake news can be intimidating as they attract more audience than normal. People use them because this can be a very good marketing strategy. But the money earned might not live upto fact that it can harm people.\par
+\b 2. Problem Statement\b0 :\par
+In this day and age, it is extremely difficult to decide whether the news we come across is real or not. There are very few options to check the authenticity and all of them are sophisticated and not accessible to the average person. There is an acute need for a web-based fact-checking platform that harnesses the power of Machine Learning to provide us with that opportunity\par
+\b 3. Motivation:\par
+\b0 Social media facilitates the creation and sharing of information that uses computer-mediated technologies. This media changed the way groups of people interact and communicate. It allows low cost, simple access and fast dissemination of information to them. The majority of people search and consume news from social media rather than traditional news organizations these days. On one side, where social media have become a powerful source of information and bringing people together, on the other side it also 1 put a negative impact on society. Look at some examples herewith; Facebook Inc\f1\rquote\f0 s popular messaging service, WhatsApp became a political battle-platform in Brazil\f1\rquote\f0 s election. False rumours, manipulated photos, de-contextualized videos, and audio jokes were used for campaigning. These kinds of stuff went viral on the digital platform without monitoring their origin or reach. A nationwide block on major social media and messaging sites including Facebook and Instagram was done in Sri Lanka after multiple terrorist attacks in the year 2019. The government claimed that \f1\ldblquote\f0 false news reports\f1\rdblquote  \f0 were circulating online. This is evident in the challenges the world's most powerful tech companies face in reducing the spread of misinformation. Such examples show that Social Media enables the widespread use of \f1\ldblquote\f0 fake news\f1\rdblquote  \f0 as well.\par
+The newsdisseminated on social media platforms may be of low quality carrying misleading information intentionally. This sacrifices the credibility of the information. Millions of news articles are being circulated every day on the Internet \f1\endash  how one\f0\lang1033  \f1\lang9 can trust which is real and which is fake? Thus incredible or fake news is one of\f0\lang1033  \f1\lang9 the biggest challenges in our digitally connected world. Fake news detection on\f0\lang1033  \f1\lang9 social media has recently become an emerging research domain. The domain\f0\lang1033  \f1\lang9 focuses on dealing with the sensitive issue of preventing the spread of fake news\f0\lang1033  \f1\lang9 on social media. Fake news identification on social media faces several challenges.\f0\lang1033  \f1\lang9 Firstly, it is difficult to collect fake news data. Furthermore, it is difficult to label\f0\lang1033  \f1\lang9 fake news manually. Since they are intentionally written to mislead readers, it is\f0\lang1033  \f1\lang9 difficult to detect them simply based on news content. Furthermore, Facebook,Whatsapp, and Twitter are closed messaging apps. The misinformation\f0\lang1033  \f1\lang9 disseminated by trusted news outlets or their friends and family is therefore\f0\lang1033  \f1\lang9 difficult to be considered as fake. It is not easy to verify the credibility of newly\f0\lang1033  \f1\lang9 emerging and time-bound news as they are not sufficient to train the application\f0\lang1033  \f1\lang9 dataset. Significant approaches to differentiate credible users, extract useful news\f0\lang1033  \f1\lang9 features and develop authentic information dissemination systems are some useful\f0\lang1033  \f1\lang9 domains of research and need further investigations. If we can\rquote t control the spread\f0\lang1033  \f1\lang9 of fake news, the trust in the system will collapse. There will be widespread\f0\lang1033  \f1\lang9 Fake News Detector 10\f0\lang1033  \f1\lang9 distrust among people. There will be nothing left that can be objectively used. It\f0\lang1033  \f1\lang9 means the destruction of political and social coherence. We wanted to build some\f0\lang1033  \f1\lang9 sort of web-based system that can fight this nightmare scenario. And we made\f0\lang1033  \f1\lang9 some significant progress towards that goal\f0\lang1033 .\b\par
+4. Background Study:\par
+\b0 From an NLP perspective, researchers have studied numerous aspects of the credibility of online information. For example, [1] applied the time-sensitive supervised approach by relying on tweet content to address the credibility of a tweet in different situations. [2] used LSTM in a similar problem of early rumour detection. In another work, [3] aimed at detecting the stance of tweets and determining the veracity of the given rumour with convolution neural networks. A submission [4] to the SemEval 2016 Twitter Stance Detection task focuses on creating a bag-of-words autoencoder and training it over the tokenized tweets.Another team, [5], combined multiple models in an ensemble providing a 50/50 weighted average between a deep convolutional neural network and a gradient-boosted decision tree. Though this work seems to be similar to our work, the difference lies in the construction of an ensemble of classifiers. In a similar attempt, a team [6] concatenated various features vectors and passed them through an NLP model. Passive Aggressive algorithm is a margin-based online learning algorithm for binary classification. It is also an algorithm of a soft margin-based method and robust to noise. It can be used in fake news detection [16] Term Frequency-Inverse Document Frequency is also a method used to represent text in Fake News Detector 12 a format that can be easily processed by machine learning algorithms. It is a numerical statistic that shows how important a word is to news in a news dataset.The importance of a word is proportional to the number of times the word appears in the news (fake and real) but inversely proportional to the number of times the word appears in the news dataset (fake or real) [15]\par
+\b 5. Feasibility Study:\b0\par
+Passive-aggressive classifier, logistic regression, LSTM can be used in fake news etection. Bi-directional LSTM was used in [7] to detect fake news. It had easonably good accuracy but if the news was a bit more sophisticated, it would be ifficult to achieve good accuracy. Because this model picks up the ensational/clickbaity words as part of fake news. For example, if a news title says,\f1\lquote\f0 Donald Trump is the greatest president ever, the model will pick it up as fake ews with reasonable accuracy. If the title is more nuanced and written in a ophisticated way, it\f1\rquote\f0 d be difficult to do so. We believe that our LSTM model is not nough by itself to detect fake news. That\f1\rquote\f0 s why we included passive aggressive lassifier with it and when we compared passive news with reputable news ources, but the scope of the work is so vast that we couldn\f1\rquote\f0 t do it with the esources available to us. Our model can act as a first step in detecting fake news.But more work is needed to call the model reliable enough.\par
+\par
+\b 6.THE ML MODEL:\b0\par
+The code for the ML model building is as follows:\par
+TF-IDF stands for Term Frequency-Inverse Document Frequency. Term frequency s basically a ratio of the number of times a particular word appears with respect to he total number of word. And Inverse Document Frequency is basically the weight f a rare word.\par
+from sklearn.feature_extraction.text import\par
+TfidfVectorizer\par
+text = ['This is the final project of Mashiat Nahreen,\par
+Lutfor Rafe and Rabiul Alam Abir', 'This is the final\par
+project of our undergrad.' ]\par
+vectorization = TfidfVectorizer()\par
+vectorization.fit(text)\par
+print(vectorization.idf_)\par
+print(vectorization.vocabulary_)\par
+Words that are present in every data will have very low IDF value and using that\par
+we will highlight the maximum IDF values.\par
+example = text[0]\par
+Fake News Detector 22\par
+example\par
+example = vectorization.transform([example])\par
+print(example.toarray())\par
+The zeros represent there are no words in that postion.\par
+IMPLEMENTING PASSIVE AGGRESSIVE CLASSIFIER\par
+Passive is used when the prediction is correct and there is no change in the model.\par
+But if there is any kind of change in the model that is if the prediction is not correct part is called, which changes the model accordingly.\par
+import os .chdir("D:\\Books\\Fake_News_Detection-master")\par
+OS module is used for the Python program to interact with the operating system\par
+import pandas as pd\par
+dataset = pd.read_csv('news.csv')\par
+dataset.head()\par
+x = dataset['text']\par
+y = dataset['label']\par
+x\par
+y\par
+from sklearn.model_selection import train_test_split\par
+Fake News Detector 23\par
+from sklearn.feature_extraction.text import\par
+TfidfVectorizer\par
+from sklearn.linear_model import\par
+PassiveAggressiveClassifier\par
+from sklearn.metrics import accuracy_score,\par
+confusion_matrix\par
+x_train,x_test,y_train,y_test =\par
+train_test_split(x,y,test_size=0.2,random_state=0)\par
+y_train\par
+y_train\par
+vectorization =\par
+TfidfVectorizer(stop_words='english',max_df=0.7)\par
+xv_train = vectorization.fit_transform(x_train)\par
+xv_test = vectorization.transform(x_test)\par
+max_df refers to the percentage of the repetition of the word. 0.7 means 70% of the\par
+time the word is repeated.\par
+classifier = PassiveAggressiveClassifier(max_iter=50)\par
+classifier.fit(xv_train,y_train)\par
+y_pred = classifier.predict(xv_test)\par
+Fake News Detector 24\par
+score = accuracy_score(y_test,y_pred)\par
+print(f'Accuracy: \{round(score*100,2)\}%')\par
+cf = confusion_matrix(y_test,y_pred,\par
+labels=['FAKE','REAL'])\par
+print(cf)\par
+def fake_news_det(news):\par
+input_data = [news]\par
+vectorized_input_data =\par
+vectorization.transform(input_data)\par
+prediction =\par
+classifier.predict(vectorized_input_data)\par
+print(prediction)\par
+fake_news_det('U.S. Secretary of State John F. Kerry\par
+said Monday that he will stop in Paris later this\par
+week, amid criticism that no top American officials\par
+attended Sunday\'e2\'80\f1\'99\f0 s unity march against terrorism.')\par
+fake_news_det("""Go to Article\par
+President Barack Obama has been campaigning hard for\par
+the woman who is supposedly going to extend his legacy\par
+Fake News Detector 25\par
+four more years. The only problem with stumping for\par
+Hillary Clinton, however, is she\'e2\'80\f1\'99\f0 s not exactly a\par
+candidate easy to get too enthused about. """)\par
+import pickle\par
+pickle.dump(classifier,open('model.pkl', 'wb'))\par
+pickle is used for serializing and deserializing any\par
+data that is inputted in Python.\par
+loaded_model = pickle.load(open('model.pkl', 'rb'))\par
+def fake_news_det1(news):\par
+input_data = [news]\par
+vectorized_input_data =\par
+vectorization.transform(input_data)\par
+prediction =\par
+classifier.predict(vectorized_input_data)\par
+print(prediction)\par
+fake_news_det1("""U.S. Secretary of State John F.\par
+Kerry said Monday that he will stop in Paris later\par
+this week, amid criticism that no top American\par
+Fake News Detector 26\par
+officials attended Sunday\'e2\'80\f1\'99\f0 s unity march against\par
+terrorism.""")\par
+fake_news_det('''U.S. Secretary of State John F. Kerry\par
+said Monday that he will stop in Paris later this\par
+week, amid criticism that no top American officials\par
+attended Sunday\'e2\'80\f1\'99\f0 s unity march against terrorism.''')\par
+In this project, titles of news articles found on the internet is used to determine\par
+whether a news is fake or real. We are using LSTM to help classify them into either\par
+real or fake category.\par
+import numpy as np\par
+import pandas as pd\par
+import json as j\par
+import urllib\par
+import gzip\par
+import nltk\par
+nltk.download('stopwords')\par
+from nltk.stem import PorterStemmer\par
+from sklearn.model_selection import train_test_split\par
+!pip install gensim\par
+Fake News Detector 27\par
+from gensim.models import KeyedVectors\par
+from nltk.corpus import stopwords\par
+from keras.models import Model\par
+from keras.callbacks import EarlyStopping,\par
+ModelCheckpoint\par
+from keras.layers import Dense, Input, LSTM,\par
+Embedding, Dropout, Activation\par
+from keras.layers.merge import concatenate\par
+from keras.layers.normalization import\par
+BatchNormalization\par
+from keras.preprocessing import sequence\par
+from keras.preprocessing.text import Tokenizer\par
+from keras.preprocessing.sequence import pad_sequences\par
+Data scanning and parsing : Data is loaded from a csv file fake_or_real_news.csv.\par
+This consists of the title and text of a select group of news articles. It then contains\par
+a label field which indicates whether the news is real or fake. In this code block,\par
+we scan the csv and clean the titles to filter out stop words and punctuation.\par
+import re\par
+import string\par
+Fake News Detector 28\par
+from sklearn.feature_extraction.text import\par
+CountVectorizer\par
+def clean_text(text):\par
+text = str(text)\par
+text = text.split()\par
+words = []\par
+for word in text:\par
+exclude = set(string.punctuation)\par
+word = ''.join(ch for ch in word if ch not in\par
+exclude)\par
+if word in stops:\par
+continue\par
+try:\par
+words.append(ps.stem(word))\par
+except UnicodeDecodeError:\par
+words.append(word)\par
+text = " ".join(words)\par
+return text.lower()\par
+Fake News Detector 29\par
+stops = set(stopwords.words("english"))\par
+ps = PorterStemmer()\par
+f = pd.read_csv('news.csv')\par
+f.label = f.label.map(dict(REAL=1, FAKE=0))\par
+f\par
+We take the news titles and divide the train and test set. We also clean the text.\par
+f = f[1:100]\par
+X_train, X_test, y_train, y_test =\par
+train_test_split(f['title'], f.label, test_size=0.2)\par
+X_cleaned_train = [clean_text(x) for x in X_train]\par
+X_cleaned_test = [clean_text(x) for x in X_test]\par
+X_cleaned_train[0]\par
+Tokenizer : Tokenizer is used to assign indices to words, and filter out infrequent\par
+words. This allows us to generate sequences for our training and testing data.\par
+import tokenize\par
+from keras.preprocessing.text import Tokenizer\par
+MAX_NB_WORDS = 20000\par
+tokenizer = Tokenizer(num_words=MAX_NB_WORDS)\par
+Fake News Detector 30\par
+tokenizer.fit_on_texts(X_cleaned_train +\par
+X_cleaned_test)\par
+print('Finished Building Tokenizer')\par
+train_sequence =\par
+tokenizer.texts_to_sequences(X_cleaned_train)\par
+print('Finished Tokenizing Training')\par
+test_sequence =\par
+tokenizer.texts_to_sequences(X_cleaned_test)\par
+print('Finished Tokenizing Training')\par
+Embedding Matrix : Embedding matrix is used to extract the semantic information\par
+from the words in each title.\par
+from gensim.models import KeyedVectors\par
+from gensim.models import Word2Vec\par
+EMBEDDING_FILE =\par
+'{{\field{\*\fldinst{HYPERLINK https://s3.amazonaws.com/dl4j-distribution/GoogleNews }}{\fldrslt{https://s3.amazonaws.com/dl4j-distribution/GoogleNews\ul0\cf0}}}}\f0\fs28\par
+-vectors-negative300.bin.gz'\par
+Word2Vec =\par
+KeyedVectors.load_word2vec_format(EMBEDDING_FILE,\par
+binary=True)\par
+Fake News Detector 31\par
+word_index = tokenizer.word_index\par
+print('Found %s unique tokens' % len(word_index))\par
+nb_words = min(20000, len(word_index))\par
+embedding_matrix = np.zeros((nb_words, 300))\par
+for word, i in word_index.items():\par
+try:\par
+embedding_vector = word2vec.word_vec(word)\par
+if embedding_vector is not None and i < 7000:\par
+embedding_matrix[i] = embedding_vector\par
+except (KeyError, IndexError) as e:\par
+continue\par
+Building the Model : The model is created using an Embedding layer, LSTM,\par
+Dropout, and Dense layers.We are going to run the data on 20 epochs.\par
+from keras.models import Sequential\par
+from keras.layers import Dense, LSTM, Dropout, Conv1D,\par
+MaxPooling1D\par
+from keras.layers.embeddings import Embedding\par
+from keras.preprocessing import sequence\par
+from keras.preprocessing.sequence import pad_sequences\par
+Fake News Detector 32\par
+kVECTORLEN = 50\par
+model = Sequential()\par
+model.add(Embedding(5000, 500, input_length=50))\par
+model.add(Dropout(0.4))\par
+model.add(Dense(1, activation='relu'))\par
+model.compile(loss='binary_crossentropy',\par
+optimizer='adam', metrics=['accuracy'])\par
+print(model.summary())\par
+train_sequence =\par
+sequence.pad_sequences(train_sequence, maxlen=50)\par
+test_sequence = sequence.pad_sequences(test_sequence,\par
+maxlen=50)\par
+history = model.fit(train_sequence, y_train,\par
+validation_data=(test_sequence, y_test), epochs=20,\par
+batch_size=64)\par
+Calculating the accuracy.\par
+scores = model.evaluate(test_sequence, y_test,\par
+verbose=0)\par
+Fake News Detector 33\par
+accuracy = (scores[1]*100)\par
+print("Accuracy: \{:.2f\}%".format(scores[1]*100))\par
+Analyzing the Data: The graphs below demonstrate the change in accuracy and\par
+loss for the training data as well as the validation data.\par
+import matplotlib.pyplot as plt\par
+plt.plot(history.history['accuracy'])\par
+plt.plot(history.history['val_accuracy'])\par
+plt.title('model accuracy')\par
+plt.ylabel('accuracy')\par
+plt.xlabel('epoch')\par
+plt.legend(['train', 'validation'], loc='upper left')\par
+plt.show()\par
+plt.plot(history.history['loss'])\par
+plt.plot(history.history['val_loss'])\par
+plt.title('model loss')\par
+plt.ylabel('loss')\par
+plt.xlabel('epoch')\par
+plt.legend(['train', 'test'], loc='upper left')\par
+plt.show()\par
+Fake News Detector \par
+\par
+\b 7. Flask Code:\b0\par
+from flask import Flask, render_template, request\par
+from sklearn.feature_extraction.text import\par
+TfidfVectorizer\par
+from sklearn.linear_model import\par
+PassiveAggressiveClassifier\par
+import pickle\par
+import pandas as pd\par
+from sklearn.model_selection import train_test_split\par
+app = Flask(__name__)\par
+vectorization = TfidfVectorizer(stop_words='english',\par
+max_df=0.7)\par
+loaded_model = pickle.load(open('model.pkl', 'rb'))\par
+dataset = pd.read_csv('news.csv')\par
+x = dataset['text']\par
+y = dataset['label']\par
+x_train, x_test, y_train, y_test = train_test_split(x,\par
+y, test_size=0.2, random_state=0)\par
+Fake News Detector 36\par
+def fake_news_det(news):\par
+xv_train = vectorization.fit_transform(x_train)\par
+xv_test = vectorization.transform(x_test)\par
+input_data = [news]\par
+vectorized_input_data =\par
+vectorization.transform(input_data)\par
+prediction =\par
+loaded_model.predict(vectorized_input_data)\par
+return prediction\par
+@app.route('/')\par
+def home():\par
+return render_template('index.html')\par
+@app.route('/predict', methods=['POST'])\par
+def predict():\par
+if request.method == 'POST':\par
+message = request.form['message']\par
+pred = fake_news_det(message)\par
+print(pred)\par
+Fake News Detector 37\par
+return render_template('index.html',\par
+prediction=pred)\par
+else:\par
+return render_template('index.html',\par
+prediction="Something went wrong")\par
+if __name__ == '__main__':\par
+app.run(debug=True)\par
+\par
+\b 8.web Interface:\b0\par
+<!DOCTYPE html>\par
+<html>\par
+<head>\par
+<meta charset="UTF-8">\par
+<title>Fake News Detection System</title>\par
+<link\par
+href='https://fonts.googleapis.com/css?family=Pacifico\par
+' rel='stylesheet' type='text/css'>\par
+<link\par
+href='https://fonts.googleapis.com/css?family=Arimo'\par
+rel='stylesheet' type='text/css'>\par
+<link\par
+href='https://fonts.googleapis.com/css?family=Hind:300\par
+' rel='stylesheet' type='text/css'>\par
+<link\par
+href='https://fonts.googleapis.com/css?family=Open+San\par
+s+Condensed:300' rel='stylesheet' type='text/css'>\par
+Fake News Detector 39\par
+<meta name="viewport" content="width=device-width,\par
+initial-scale=1">\par
+<style>\par
+input[type=text], select, textarea \{\par
+width: 50%;\par
+padding: 10px;\par
+border: 3px solid #ccc;\par
+border-radius: 1px;\par
+box-sizing: border-box;\par
+margin-top: 6px;\par
+margin-bottom: 16px;\par
+resize: horizontal;\par
+\}\par
+button \{\par
+background-color: #4CAF50;\par
+color: white;\par
+padding: 14px 20px;\par
+margin: 8px 0;\par
+border: none;\par
+Fake News Detector 40\par
+cursor: pointer;\par
+width: 50%;\par
+\}\par
+button:hover \{\par
+opacity: 0.8;\par
+\}\par
+h1 \{\par
+text-align: center;\par
+\}\par
+p \{\par
+text-align: center;\par
+\}\par
+div \{\par
+text-align: center;\par
+\}\par
+body \{\par
+Fake News Detector 41\par
+background: rgba(0, 128, 0, 0.3) /* Green\par
+background with 30% opacity */\par
+\}\par
+</style>\par
+</head>\par
+<body>\par
+<p style="padding: 0 10em 10em 0">\par
+<div class="login">\par
+<h1 style="text-align:center;">Fake News Detector\par
+</br> By Lutfor Rafe(154429) </br> Rabiul Alam\par
+Abir(160041026) </br> Mashiat\par
+Nahreen(160041028) </h1>\par
+<form action="\{\{ url_for('predict')\}\}"\par
+method="POST">\par
+<textarea name="message" rows="6" cols="20"\par
+required="required" style="font-size:\par
+18pt"></textarea>\par
+<br> </br>\par
+Fake News Detector 42\par
+<button type="submit" class="btn btn-primary\par
+btn-block btn-large">Predict</button>\par
+<div class="results">\par
+\{% if prediction == ['FAKE']%\}\par
+<h2 style="color:red;">Looking Spam\f2\u9888?\u-497?\f0 News\f3\u-10179?\u-8976?\f0\par
+</h2>\par
+\{% elif prediction == ['REAL']%\}\par
+<h2 style="color:green;"><b>Looking Real\par
+News\f3\u-10179?\u-8976?\f0 </b></h2>\par
+\{% endif %\}\par
+</div>\par
+</form>\par
+</div>\par
+</p>\par
+</body>\par
+</html>\par
+\b 9. Conclusion:\b0\par
+Our project can ring the initial alert for fake news. The model produces worse results if the article is written cleverly, without any sensationalization. This is a very complex problem but we tried to address it as much as we could. We believe the interface provides an easier way for the average person to check the authenticity of a news. Projects like this one with more advanced features should be integrated on social media to prevent the spread of fake news.\lang9\par
+}
+ 
